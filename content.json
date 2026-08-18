@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "eyebrow": "LUMI LIV",
+    "headline": "Precision Crafted.\nPersonally Yours.",
+    "subhead": "Custom leather & acrylic gifts and décor — laser cut, hand-finished, made to order. Wholesale & retail.",
+    "ctaLabel": "Enquire Now",
+    "ctaLink": "#contact",
+    "imagesColUp": [
+      { "image": "", "alt": "Leather craft piece" },
+      { "image": "", "alt": "Leather craft piece" },
+      { "image": "", "alt": "Leather craft piece" }
+    ],
+    "imagesColDown": [
+      { "image": "", "alt": "Acrylic craft piece" },
+      { "image": "", "alt": "Acrylic craft piece" },
+      { "image": "", "alt": "Acrylic craft piece" }
+    ]
+  },
+  "founder": {
+    "name": "Owner",
+    "body": "Lumi Liv started with a simple idea — that gifts should feel personal, not generic. Every piece that leaves our workshop is cut, engraved, and finished by hand, made exactly the way you imagined it.\n\nThank you for letting us be part of your celebrations.",
+    "image": ""
+  },
+  "services": {
+    "heading": "Our Services.",
+    "intro": "One thread runs through everything we make. Bring us your idea — in leather, acrylic, or anything in between — and we'll cut, engrave, and stitch it into shape.",
+    "items": [
+      { "tag": "CO2 LASER", "title": "Laser Cutting", "body": "Precise custom cuts in leather, acrylic, wood, and more — however intricate the design.", "image": "" },
+      { "tag": "FIBER LASER", "title": "Engraving", "body": "Fine detail engraved into metal, acrylic, and leather alike.", "image": "" },
+      { "tag": "BY HAND", "title": "Stitching", "body": "Hand-stitched seams and finishes, built to last — not just look good.", "image": "" },
+      { "tag": "YOUR IDEA", "title": "Custom Design", "body": "Send a sketch, a photo, or just an idea — we'll turn it into a finished piece, made to order.", "image": "" }
+    ]
+  },
+  "gallery": {
+    "heading": "A few things we've made — in leather, acrylic, and everything in between.",
+    "items": [
+      { "image": "", "alt": "Premium leather tissue box" },
+      { "image": "", "alt": "Acrylic wedding welcome sign" },
+      { "image": "", "alt": "Leather jewelry display mannequin" },
+      { "image": "", "alt": "Acrylic baby shower keepsake" },
+      { "image": "", "alt": "Leather watch holder" },
+      { "image": "", "alt": "Custom made-to-order piece" }
+    ]
+  },
+  "occasions": {
+    "items": [
+      { "label": "Weddings", "image": "" },
+      { "label": "Baby Showers", "image": "" },
+      { "label": "Corporate", "image": "" },
+      { "label": "Personal", "image": "" }
+    ]
+  },
+  "banner": {
+    "text": "Got something in mind? If you can sketch it, we can cut it."
+  },
+  "lifestyle": {
+    "images": [
+      { "image": "", "alt": "Workshop moment" },
+      { "image": "", "alt": "Workshop moment" },
+      { "image": "", "alt": "Workshop moment" },
+      { "image": "", "alt": "Workshop moment" }
+    ],
+    "text": "Follow along for behind-the-scenes and finished pieces. From color picks to custom requests, your ideas help shape what we make next.",
+    "ctaLabel": "Follow Along",
+    "ctaLink": ""
+  },
+  "contact": {
+    "headline": "Got an idea?",
+    "body": "Tell us what you're picturing — we'll help make it real.",
+    "whatsappNumber": "919876543210",
+    "email": "hello@lumiliv.com",
+    "phoneDisplay": "+91 98765 43210",
+    "address": "Lumi Liv Craft Studio\n23, Maker's Lane, Kochi,\nKerala, India – 682018",
+    "website": "www.lumiliv.com",
+    "socials": {
+      "instagram": "",
+      "facebook": "",
+      "pinterest": "",
+      "behance": ""
+    },
+    "mapEmbedSrc": "https://www.google.com/maps?q=Kochi,Kerala,India&output=embed"
+  },
+  "brand": {
+    "logo": ""
+  }
+}
