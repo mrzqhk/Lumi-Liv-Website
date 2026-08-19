@@ -40,14 +40,32 @@ document.addEventListener("lumiliv:content-ready", initMotion, { once: true });
 function initMotion() {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (reduced || typeof gsap === "undefined") {
+  function showEverythingNoAnimation() {
     document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
     document.querySelectorAll(".draw").forEach((el) => { el.style.strokeDashoffset = "0"; });
     document.querySelectorAll(".wave-divider .wave-path").forEach((el) => { el.style.strokeDashoffset = "0"; });
     document.querySelectorAll(".stitch-thread").forEach((el) => { el.style.transform = "translateX(-50%) scaleY(1)"; });
+  }
+
+  // If either script failed to load (flaky CDN, ad-blocker, offline), never
+  // leave the page stuck invisible — show everything plainly instead.
+  if (reduced || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    showEverythingNoAnimation();
     return;
   }
 
+  // Safety net: if anything below throws partway through for any reason,
+  // fall back to showing everything rather than leaving sections at
+  // opacity:0 forever.
+  try {
+    runScrollAnimations();
+  } catch (err) {
+    console.error("Animation setup failed, showing content without animation.", err);
+    showEverythingNoAnimation();
+  }
+}
+
+function runScrollAnimations() {
   gsap.registerPlugin(ScrollTrigger);
 
   // Generic reveal-on-scroll for anything tagged .reveal
