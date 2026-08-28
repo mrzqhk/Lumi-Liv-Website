@@ -1,0 +1,90 @@
+/* Policy / Terms page — brown background, beige text, clean centered minimal look */
+.policy-body {
+  background: var(--brown);
+  min-height: 100svh;
+}
+
+.policy-nav {
+  position: static;
+  padding: 22px var(--gutter);
+}
+.policy-nav .nav-pill { justify-self: start; }
+
+.policy-main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 50px var(--gutter) 90px;
+  text-align: center;
+}
+
+.policy-eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.policy-main h1 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--cream);
+  margin: 0 0 50px;
+}
+
+.policy-items {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.policy-item { text-align: center; }
+
+.policy-item .policy-num {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.policy-item .policy-heading {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.policy-item .policy-desc {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--cream);
+  opacity: 0.82;
+  margin: 0 auto;
+  max-width: 540px;
+}
+
+.policy-footer {
+  text-align: center;
+  padding: 30px var(--gutter) 50px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--cream);
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .policy-main { padding-top: 30px; }
+  .policy-main h1 { margin-bottom: 36px; }
+}

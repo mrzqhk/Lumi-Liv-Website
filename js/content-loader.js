@@ -24,7 +24,7 @@
     founder: {
       name: "Owner",
       body: "Lumi Liv started with a simple idea — that gifts should feel personal, not generic. Every piece that leaves our workshop is cut, engraved, and finished by hand, made exactly the way you imagined it.\n\nThank you for letting us be part of your celebrations.",
-      image: ""
+      image: "assets/logo.jpg"
     },
     services: {
       heading: "Our Services.",

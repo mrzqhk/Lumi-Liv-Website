@@ -6,8 +6,8 @@
 <title>Lumi Liv — Site Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
-<link rel="stylesheet" href="css/admin.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
+<link rel="stylesheet" href="css/admin.css?v=13">
 </head>
 <body class="admin-body">
 
@@ -149,8 +149,19 @@
     </div>
   </section>
 
+  <section class="admin-card">
+    <h2>Privacy Policy &amp; Terms</h2>
+    <p class="hint" style="margin-bottom:16px; display:block;">These appear on their own pages, linked from the footer. Each has up to 6 entries — leave a heading blank to skip that entry.</p>
+    <h3>Privacy Policy</h3>
+    <label>Page title <input type="text" id="f-privacy-title"></label>
+    <div id="privacy-fields"></div>
+    <h3 style="margin-top:24px;">Terms &amp; Conditions</h3>
+    <label>Page title <input type="text" id="f-terms-title"></label>
+    <div id="terms-fields"></div>
+  </section>
+
 </main>
 
-<script src="js/admin.js?v=12"></script>
+<script src="js/admin.js?v=13"></script>
 </body>
 </html>

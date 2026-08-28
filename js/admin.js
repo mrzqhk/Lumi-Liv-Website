@@ -84,6 +84,32 @@
     });
   }
 
+  function buildPolicyFields() {
+    const buildDoc = (elId, docKey) => {
+      const wrap = $(elId);
+      wrap.innerHTML = "";
+      while (content.policies[docKey].items.length < 6) {
+        content.policies[docKey].items.push({ heading: "", body: "" });
+      }
+      content.policies[docKey].items.forEach((item, i) => {
+        const block = document.createElement("div");
+        block.className = "item-block";
+        block.innerHTML = `
+          <h3>Entry ${i + 1}</h3>
+          <label>Heading <input type="text" class="pol-heading" data-idx="${i}"></label>
+          <label>Body text <textarea rows="2" class="pol-body" data-idx="${i}"></textarea></label>
+        `;
+        block.querySelector(".pol-heading").value = item.heading || "";
+        block.querySelector(".pol-body").value = item.body || "";
+        block.querySelector(".pol-heading").addEventListener("input", (e) => item.heading = e.target.value);
+        block.querySelector(".pol-body").addEventListener("input", (e) => item.body = e.target.value);
+        wrap.appendChild(block);
+      });
+    };
+    buildDoc("privacy-fields", "privacy");
+    buildDoc("terms-fields", "terms");
+  }
+
   function buildLifestyleFields() {
     const wrap = $("lifestyle-fields");
     wrap.innerHTML = "";
@@ -172,12 +198,16 @@
     $("f-map-src").value = content.contact.mapEmbedSrc || "";
     $("map-preview").src = content.contact.mapEmbedSrc || "";
 
+    $("f-privacy-title").value = content.policies.privacy.title;
+    $("f-terms-title").value = content.policies.terms.title;
+
     buildHeroImageFields();
     buildFounderField();
     buildServiceFields();
     buildGalleryFields();
     buildOccasionsFields();
     buildLifestyleFields();
+    buildPolicyFields();
   }
 
   function bindStaticInputs() {
@@ -225,6 +255,9 @@
       $("map-preview").src = src;
     });
 
+    $("f-privacy-title").addEventListener("input", (e) => content.policies.privacy.title = e.target.value);
+    $("f-terms-title").addEventListener("input", (e) => content.policies.terms.title = e.target.value);
+
     $("btn-save").addEventListener("click", saveContent);
     $("btn-reset").addEventListener("click", resetContent);
     $("btn-download").addEventListener("click", downloadContent);
@@ -266,13 +299,32 @@
     URL.revokeObjectURL(url);
   }
 
+  function deepMerge(base, override) {
+    if (override === undefined || override === null) return base;
+    if (Array.isArray(base) || Array.isArray(override)) {
+      return override !== undefined ? override : base;
+    }
+    if (typeof base === "object" && typeof override === "object") {
+      const result = { ...base };
+      for (const key in base) result[key] = deepMerge(base[key], override[key]);
+      for (const key in override) if (!(key in result)) result[key] = override[key];
+      return result;
+    }
+    return override !== undefined ? override : base;
+  }
+
   function init() {
     const stored = localStorage.getItem(STORAGE_KEY);
     fetch("content.json")
       .then((res) => res.json())
       .then((json) => {
         defaults = json;
-        content = stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(json));
+        try {
+          content = stored ? deepMerge(json, JSON.parse(stored)) : JSON.parse(JSON.stringify(json));
+        } catch (e) {
+          console.warn("Saved content was invalid, starting fresh from defaults.", e);
+          content = JSON.parse(JSON.stringify(json));
+        }
         fillStaticFields();
         bindStaticInputs();
       });
