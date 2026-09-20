@@ -94,14 +94,24 @@
     return `<div class="placeholder">${escapeHtml(altText || "Add an image in the admin panel")}</div>`;
   }
 
-  function render(content) {
-    // Hero
-    document.getElementById("hero-eyebrow").textContent = content.hero.eyebrow;
-    document.getElementById("hero-headline").textContent = content.hero.headline;
-    document.getElementById("hero-subhead").textContent = content.hero.subhead;
+  const socialIcons = {
+    instagram: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+    facebook: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.9 21.9v-8.4h2.8l.4-3.3h-3.2V8.1c0-1 .3-1.6 1.7-1.6h1.7V3.6C17 3.5 16 3.4 14.9 3.4c-2.5 0-4.3 1.6-4.3 4.4v2.4H7.8v3.3h2.8v8.4h3.3z"/></svg>'
+  };
+  const stitchIcons = [
+    '<svg viewBox="0 0 24 24"><line class="draw" x1="4" y1="20" x2="19" y2="5"/><circle cx="19" cy="5" r="1.4" fill="currentColor" stroke="none"/></svg>',
+    '<svg viewBox="0 0 24 24"><path class="draw" d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2L18 18M6 18l2.8-2.8M15.2 8.8L18 6"/></svg>',
+    '<svg viewBox="0 0 24 24"><path class="draw" d="M2 12l3.5-6 3.5 6 3.5-6 3.5 6 3.5-6"/></svg>',
+    '<svg viewBox="0 0 24 24"><path class="draw" d="M4 20L15 4M15 4h-5M15 4v5"/></svg>'
+  ];
+
+  function renderHero(data) {
+    document.getElementById("hero-eyebrow").textContent = data.hero.eyebrow;
+    document.getElementById("hero-headline").textContent = data.hero.headline;
+    document.getElementById("hero-subhead").textContent = data.hero.subhead;
     const cta = document.getElementById("hero-cta");
-    cta.textContent = content.hero.ctaLabel;
-    cta.setAttribute("href", content.hero.ctaLink || "#contact");
+    cta.textContent = data.hero.ctaLabel;
+    cta.setAttribute("href", data.hero.ctaLink || "#contact");
 
     function renderLoopCol(elId, items) {
       const wrap = document.getElementById(elId);
@@ -109,37 +119,32 @@
       const tilesHtml = items.map((item) =>
         `<div class="hero-visual-tile">${mediaFill(item.image, item.alt)}</div>`
       ).join("");
-      // duplicate the set so the loop can scroll a full 50% and land back seamlessly
       wrap.innerHTML = tilesHtml + tilesHtml;
     }
-    renderLoopCol("hero-col-up", content.hero.imagesColUp);
-    renderLoopCol("hero-col-down", content.hero.imagesColDown);
+    renderLoopCol("hero-col-up", data.hero.imagesColUp);
+    renderLoopCol("hero-col-down", data.hero.imagesColDown);
+  }
 
-    // Founder note
-    document.getElementById("founder-body").textContent = content.founder.body;
-    document.getElementById("founder-signature").textContent = "— " + content.founder.name;
+  function renderFounder(data) {
+    document.getElementById("founder-body").textContent = data.founder.body;
+    document.getElementById("founder-signature").textContent = "— " + data.founder.name;
     const founderImg = document.getElementById("founder-image");
     const founderPh = document.getElementById("founder-placeholder");
-    if (content.founder.image) {
-      founderImg.src = content.founder.image;
+    if (data.founder.image) {
+      founderImg.src = data.founder.image;
       founderImg.style.display = "";
       founderPh.style.display = "none";
     } else {
       founderImg.style.display = "none";
       founderPh.style.display = "";
     }
+  }
 
-    // Services
-    document.getElementById("services-heading").textContent = content.services.heading;
-    document.getElementById("services-intro").textContent = content.services.intro;
-    const stitchIcons = [
-      '<svg viewBox="0 0 24 24"><line class="draw" x1="4" y1="20" x2="19" y2="5"/><circle cx="19" cy="5" r="1.4" fill="currentColor" stroke="none"/></svg>',
-      '<svg viewBox="0 0 24 24"><path class="draw" d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2L18 18M6 18l2.8-2.8M15.2 8.8L18 6"/></svg>',
-      '<svg viewBox="0 0 24 24"><path class="draw" d="M2 12l3.5-6 3.5 6 3.5-6 3.5 6 3.5-6"/></svg>',
-      '<svg viewBox="0 0 24 24"><path class="draw" d="M4 20L15 4M15 4h-5M15 4v5"/></svg>'
-    ];
+  function renderServices(data) {
+    document.getElementById("services-heading").textContent = data.services.heading;
+    document.getElementById("services-intro").textContent = data.services.intro;
     const svcWrap = document.getElementById("services-list");
-    svcWrap.innerHTML = content.services.items.map((item, i) => {
+    svcWrap.innerHTML = data.services.items.map((item, i) => {
       const flip = i % 2 === 1 ? " flip" : "";
       return `
         <div class="stitch-item${flip} reveal">
@@ -152,39 +157,42 @@
           <div class="stitch-media">${mediaFill(item.image, item.title)}</div>
         </div>`;
     }).join("");
+  }
 
-    // Gallery
-    document.getElementById("gallery-heading").textContent = content.gallery.heading;
+  function renderGallery(data) {
+    document.getElementById("gallery-heading").textContent = data.gallery.heading;
     const galWrap = document.getElementById("gallery-grid");
-    galWrap.innerHTML = content.gallery.items.map((item, i) => {
-      return `
+    galWrap.innerHTML = data.gallery.items.map((item, i) => `
         <div class="gallery-tile g${i + 1} reveal" tabindex="0">
           ${mediaFill(item.image, item.alt)}
-        </div>`;
-    }).join("");
+        </div>`).join("");
+  }
 
-    // Occasions
+  function renderOccasions(data) {
     const occWrap = document.getElementById("occasions-row");
-    occWrap.innerHTML = content.occasions.items.map((item) => `
+    occWrap.innerHTML = data.occasions.items.map((item) => `
       <div class="occasion-item reveal">
         <div class="occasion-circle">${mediaFill(item.image, item.label)}</div>
         <span class="occasion-label">${escapeHtml(item.label)}</span>
       </div>`).join("");
+  }
 
-    // Accent banner
-    document.getElementById("banner-text").textContent = content.banner.text;
+  function renderBanner(data) {
+    document.getElementById("banner-text").textContent = data.banner.text;
+  }
 
-    // Lifestyle strip
+  function renderLifestyle(data) {
     const lifeWrap = document.getElementById("lifestyle-strip");
-    lifeWrap.innerHTML = content.lifestyle.images.map((item) => `
+    lifeWrap.innerHTML = data.lifestyle.images.map((item) => `
       <div class="lifestyle-tile">${mediaFill(item.image, item.alt)}</div>`).join("");
-    document.getElementById("lifestyle-text").textContent = content.lifestyle.text;
+    document.getElementById("lifestyle-text").textContent = data.lifestyle.text;
     const lifeCta = document.getElementById("lifestyle-cta-btn");
-    lifeCta.textContent = content.lifestyle.ctaLabel;
-    lifeCta.setAttribute("href", content.lifestyle.ctaLink || "#");
+    lifeCta.textContent = data.lifestyle.ctaLabel;
+    lifeCta.setAttribute("href", data.lifestyle.ctaLink || "#");
+  }
 
-    // Contact
-    const c = content.contact;
+  function renderContact(data) {
+    const c = data.contact;
     document.getElementById("contact-headline").textContent = c.headline;
     document.getElementById("contact-body").textContent = c.body;
     document.getElementById("contact-phone").textContent = c.phoneDisplay;
@@ -197,7 +205,6 @@
     const em = document.getElementById("contact-email");
     em.setAttribute("href", `mailto:${c.email}`);
 
-    const socialIcons = { instagram: "IG", facebook: "FB", pinterest: "PN", behance: "BE" };
     const socialsWrap = document.getElementById("contact-socials");
     const socialsHtml = Object.entries(c.socials || {})
       .filter(([, url]) => url)
@@ -211,8 +218,6 @@
     const mapFrame = document.getElementById("contact-map");
     mapFrame.setAttribute("src", c.mapEmbedSrc || "");
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-
     const newsletterForm = document.getElementById("newsletter-form");
     if (newsletterForm && !newsletterForm.dataset.bound) {
       newsletterForm.dataset.bound = "true";
@@ -222,7 +227,32 @@
         window.location.href = `mailto:${c.email}?subject=${encodeURIComponent("Newsletter signup")}&body=${encodeURIComponent("Please add me to the Lumi Liv mailing list: " + email)}`;
       });
     }
+  }
 
+  // Runs each section independently — if one section's data is malformed
+  // (e.g. from a hand-edit to content.json), it falls back to the built-in
+  // defaults for just that section instead of leaving it (and everything
+  // rendered after it) blank.
+  function renderSection(label, fn, content) {
+    try {
+      fn(content);
+    } catch (e) {
+      console.error(`Failed to render "${label}" section from content.json — using built-in defaults for it instead.`, e);
+      try { fn(DEFAULT_CONTENT); } catch (e2) { console.error(`Built-in default for "${label}" also failed to render.`, e2); }
+    }
+  }
+
+  function render(content) {
+    renderSection("hero", renderHero, content);
+    renderSection("founder", renderFounder, content);
+    renderSection("services", renderServices, content);
+    renderSection("gallery", renderGallery, content);
+    renderSection("occasions", renderOccasions, content);
+    renderSection("banner", renderBanner, content);
+    renderSection("lifestyle", renderLifestyle, content);
+    renderSection("contact", renderContact, content);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
     document.dispatchEvent(new CustomEvent("lumiliv:content-ready"));
   }
 

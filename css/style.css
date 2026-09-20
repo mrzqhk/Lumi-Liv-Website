@@ -577,6 +577,7 @@ footer.site-footer {
   padding: 9px 20px;
   border-radius: var(--radius-pill);
   text-decoration: none;
+  pointer-events: auto;
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .nav-pill:hover { background: var(--cream); color: var(--brown); }

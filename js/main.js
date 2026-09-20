@@ -37,6 +37,24 @@
 /* Scroll-driven motion for Lumi Liv. Runs once content-loader has populated the DOM. */
 document.addEventListener("lumiliv:content-ready", initMotion, { once: true });
 
+// Last-resort watchdog: if content-ready hasn't fired within 5s of any
+// reasonable load time (content.json stuck, an unforeseen script error,
+// etc.), force every .reveal section visible anyway rather than leaving
+// the page looking blank.
+let contentReadyFired = false;
+document.addEventListener("lumiliv:content-ready", () => { contentReadyFired = true; }, { once: true });
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    if (!contentReadyFired) {
+      console.warn("Content never signaled ready — forcing page visible as a safety net.");
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+      document.querySelectorAll(".draw").forEach((el) => { el.style.strokeDashoffset = "0"; });
+      document.querySelectorAll(".wave-divider .wave-path").forEach((el) => { el.style.strokeDashoffset = "0"; });
+      document.querySelectorAll(".stitch-thread").forEach((el) => { el.style.transform = "translateX(-50%) scaleY(1)"; });
+    }
+  }, 5000);
+});
+
 function initMotion() {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
