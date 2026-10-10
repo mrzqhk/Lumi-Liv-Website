@@ -259,7 +259,7 @@
   function showLoadWarning() {
     const bar = document.createElement("div");
     bar.textContent = "⚠ Could not load content.json — showing built-in default text. Check that you're serving this folder (not a parent/child folder) from your local server.";
-    bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999;background:#B3402B;color:#fff;font:13px/1.4 sans-serif;padding:8px 16px;text-align:center;";
+    bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999;background:#B3402B;color:#fff;font:13px/1.4 'Raleway',sans-serif;padding:8px 16px;text-align:center;";
     document.body.prepend(bar);
   }
 

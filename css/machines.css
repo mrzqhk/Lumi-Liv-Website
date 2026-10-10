@@ -31,9 +31,9 @@
 }
 .machines-hero-content h1 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2.6rem, 4.5vw, 4rem);
-  line-height: 1.08;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.15;
   color: var(--brown-ink);
   margin: 0 0 22px;
 }
@@ -85,9 +85,10 @@
   gap: 12px;
   color: var(--brown);
   opacity: 0.7;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-align: center;
   padding: 20px;
 }
@@ -112,9 +113,10 @@
   color: var(--gold);
 }
 .mh-badge-text {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   line-height: 1.5;
   opacity: 0.85;
 }
@@ -173,9 +175,9 @@
 }
 .machine-label-col h2 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1.1;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  line-height: 1.15;
   margin: 0 0 18px;
   color: var(--brown-ink);
 }
@@ -200,13 +202,15 @@
   gap: 4px;
 }
 .machine-spec-val {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--brown-ink);
   letter-spacing: -0.01em;
 }
 .machine-spec-key {
+  font-family: var(--sans);
+  font-weight: 600;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -277,9 +281,10 @@
   gap: 10px;
   text-align: center;
   padding: 16px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
   opacity: 0.75;
 }
 .ip-inner--sm {
@@ -350,8 +355,8 @@
 }
 .caps-heading {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
   margin: 0 0 36px;
   color: var(--brown-ink);
 }
@@ -414,8 +419,8 @@
 }
 .cap-card h4 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.05rem;
+  font-weight: 700;
+  font-size: 0.98rem;
   color: var(--brown-ink);
   margin: 0 0 6px;
 }
@@ -467,9 +472,10 @@
   flex-wrap: wrap;
 }
 .material-tag {
-  font-family: var(--mono);
+  font-family: var(--sans);
+  font-weight: 600;
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   padding: 9px 18px;
   border-radius: var(--radius-pill);
   border: 1.5px solid rgba(107,66,38,0.3);
@@ -530,8 +536,9 @@
   padding: 20px 22px;
   text-align: left;
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
   line-height: 1.5;
 }
 .compare-table th:first-child { width: 30%; }

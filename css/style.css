@@ -1,12 +1,4 @@
 /* ===== Lumi Liv — brand tokens ===== */
-@font-face {
-  font-family: "PlomPraeng";
-  src: url("../fonts/PlomPraeng.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --cream: #F7F3E9;
   --cream-deep: #F1EADA;
@@ -17,9 +9,9 @@
   --rust: #B3402B;
   --white: #FFFDF8;
 
-  --serif: "Fraunces", "Georgia", serif;
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --sans: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --container: 1280px;
   --gutter: clamp(24px, 6vw, 96px);
@@ -40,7 +32,18 @@ body {
   color: var(--brown-ink);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  color: var(--brown-ink);
+  letter-spacing: -0.01em;
+}
+
+button, input, textarea, select {
+  font-family: var(--sans);
 }
 
 img { max-width: 100%; display: block; }
@@ -54,11 +57,11 @@ a { color: inherit; }
 }
 
 .eyebrow {
-  font-family: var(--mono);
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--rust);
 }
 
@@ -87,11 +90,12 @@ a { color: inherit; }
   pointer-events: none;
 }
 .site-nav .brand {
-  font-family: "PlomPraeng", var(--serif);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  font-size: 1.5rem;
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.55rem;
   color: var(--cream);
+  text-decoration: none;
   pointer-events: auto;
 }
 .site-nav .nav-cta {
@@ -133,9 +137,9 @@ a { color: inherit; }
 .hero-content .eyebrow { margin-bottom: 22px; display: block; }
 .hero h1 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  line-height: 1.1;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.15;
   margin: 0 0 24px;
   color: var(--brown-ink);
   white-space: pre-line;
@@ -228,8 +232,8 @@ a { color: inherit; }
 /* ===== Section heading (shared) ===== */
 .section-heading {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
   padding: 90px var(--gutter) 30px;
   margin: 0;
 }
@@ -307,7 +311,8 @@ a { color: inherit; }
 .stitch-item.flip .stitch-media { grid-column: 1; }
 
 .stitch-copy .num {
-  font-family: var(--mono);
+  font-family: var(--sans);
+  font-weight: 700;
   color: var(--rust);
   font-size: 0.75rem;
   letter-spacing: 0.25em;
@@ -316,8 +321,8 @@ a { color: inherit; }
 }
 .stitch-copy h3 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   margin: 0 0 10px;
   color: var(--brown-ink);
 }
@@ -394,9 +399,10 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   background: linear-gradient(160deg, var(--cream-deep), #E8DFC9);
   color: var(--brown);
-  font-family: var(--serif);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
   text-align: center;
   padding: 12px;
 }
@@ -428,8 +434,10 @@ a { color: inherit; }
 }
 .accent-banner p {
   font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: var(--white);
   margin: 0;
   max-width: 780px;
@@ -605,13 +613,13 @@ footer.site-footer {
 }
 .founder-text h2 {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
   margin: 14px 0 22px;
 }
 .founder-text p {
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: #4A3626;
   white-space: pre-line;
   max-width: 480px;
@@ -646,7 +654,10 @@ footer.site-footer {
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--brown);
-  font-family: var(--serif);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
   text-align: center;
   padding: 20px;
   background: var(--cream-deep);
